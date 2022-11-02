@@ -15,6 +15,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.9.0"
+  auto_size_text_pk:
+    dependency: transitive
+    description:
+      name: auto_size_text_pk
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -100,6 +107,11 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_web_plugins:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   fuchsia_remote_debug_protocol:
     dependency: transitive
     description: flutter
@@ -131,6 +143,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.0"
+  js:
+    dependency: transitive
+    description:
+      name: js
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.4"
   matcher:
     dependency: transitive
     description:
@@ -304,6 +330,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  velocity_x:
+    dependency: "direct main"
+    description:
+      name: velocity_x
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.6.0"
   vm_service:
     dependency: transitive
     description:
@@ -311,6 +344,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "9.0.0"
+  vxstate:
+    dependency: transitive
+    description:
+      name: vxstate
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.3.0"
   webdriver:
     dependency: transitive
     description:
