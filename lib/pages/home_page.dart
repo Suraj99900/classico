@@ -46,10 +46,13 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           Navigator.pushNamed(context, MyRoutes.cartRoute);
         },
-        backgroundColor: MyTheme.darkBluishColor,
-        child: Icon(CupertinoIcons.cart),
+        backgroundColor: context.theme.buttonColor,
+        child: Icon(
+          CupertinoIcons.cart,
+          color: Vx.white,
+        ),
       ),
-      backgroundColor: MyTheme.creamColor,
+      backgroundColor: context.canvasColor,
       body: SafeArea(
         child: Container(
           padding: Vx.m20,
@@ -75,11 +78,11 @@ class CatalogHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        "classico".text.xl4.bold.color(MyTheme.darkBluishColor).make(),
+        "classico".text.xl4.bold.color(context.theme.accentColor).make(),
         "Tranding collection with classico class"
             .text
             .xl
-            .color(MyTheme.darkBluishColor)
+            .color(context.theme.accentColor)
             .make()
       ],
     );
@@ -92,7 +95,7 @@ class CatalogList extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        final catalog = CatalogModel.items[index];
+        final catalog = CatalogModel.getByPosition(index);
         return InkWell(
             onTap: () {
               Navigator.push(
@@ -118,39 +121,44 @@ class CatalogItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return VxBox(
-        child: Row(
-      children: [
-        Hero(
-            tag: Key(catalog.id.toString()),
-            child: ImageItem(image: catalog.image)),
-        Expanded(
+      child: Row(
+        children: [
+          Hero(
+              tag: Key(catalog.id.toString()),
+              child: ImageItem(image: catalog.image)),
+          Expanded(
             child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            catalog.name.text.xl.color(MyTheme.darkBluishColor).bold.make(),
-            catalog.desc.text.caption(context).make(),
-            10.heightBox,
-            ButtonBar(
-              alignment: MainAxisAlignment.spaceBetween,
-              buttonPadding: EdgeInsets.zero,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                "\$${catalog.price}".text.bold.xl.make(),
-                ElevatedButton(
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                                MyTheme.darkBluishColor),
-                            shape: MaterialStateProperty.all(StadiumBorder())),
-                        onPressed: () {},
-                        child:
-                            "Add To Cart".text.color(MyTheme.creamColor).make())
-                    .pOnly(right: 10.0)
+                catalog.name.text.xl.color(context.accentColor).bold.make(),
+                catalog.desc.text.caption(context).make(),
+                10.heightBox,
+                ButtonBar(
+                  alignment: MainAxisAlignment.spaceBetween,
+                  buttonPadding: EdgeInsets.zero,
+                  children: [
+                    "\$${catalog.price}".text.bold.xl.make(),
+                    ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    context.theme.buttonColor),
+                                shape:
+                                    MaterialStateProperty.all(StadiumBorder())),
+                            onPressed: () {},
+                            child: "Add to Cart"
+                                .text
+                                .color(MyTheme.creamColor)
+                                .make())
+                        .pOnly(right: 10.0)
+                  ],
+                )
               ],
-            )
-          ],
-        ))
-      ],
-    )).white.roundedSM.square(150).make().py12();
+            ),
+          )
+        ],
+      ),
+    ).color(context.cardColor).roundedSM.square(150).make().py12();
   }
 }
 
@@ -164,10 +172,11 @@ class ImageItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.network(image)
         .box
-        .p16
-        .color(MyTheme.creamColor)
+        .rounded
+        .p8
+        .color(context.canvasColor)
         .make()
-        .p12()
+        .p16()
         .w40(context);
   }
 }
